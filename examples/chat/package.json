@@ -10,6 +10,6 @@
     "express": "4.13.4"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "/usr/bin/nodejs index.js"
   }
 }
