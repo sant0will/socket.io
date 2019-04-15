@@ -58,11 +58,12 @@ $(function() {
     // Prevent markup from being injected into the message
     message = cleanInput(message);
     // if there is a non-empty message and a socket connection
-    if (message && connected) {
+    if (message && connected) { 
       $inputMessage.val('');
       addChatMessage({
         username: username,
-        message: message
+        message: message,
+        time: moment().format('hh:mm:ss a'),
       });
       // tell server to execute 'new message' and send along one parameter
       socket.emit('new message', message);
@@ -86,9 +87,10 @@ $(function() {
     }
 
     var $usernameDiv = $('<span class="username"/>')
-      .text(data.username)
+      .text(data.username+" ("+data.time+"):")
       .css('color', getUsernameColor(data.username));
     var $messageBodyDiv = $('<span class="messageBody">')
+    
       .text(data.message);
 
     var typingClass = data.typing ? 'typing' : '';
